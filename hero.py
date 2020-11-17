@@ -77,21 +77,18 @@ class Hero:
 
              if self.is_alive():
                  opponent.take_damage(self.attack())
+                 print(f'{self.name} won!')
 
              elif opponent.is_alive():
                  self.take_damage(opponent.attack())
-        
-         if self.is_alive():
-             print(f'{self.name} won!')
-         elif opponent.is_alive():
-             print(f'{opponent.name} won!')
+                 print(f'{opponent.name} won!')
 
 
 
 if __name__ == "__main__":
     # If you run this file from the terminal this block is executed.
-    hero1 = Hero("Wonder Woman")
-    hero2 = Hero("Dumbledore")
+    hero2 = Hero("Wonder Woman")
+    hero1 = Hero("Dumbledore")
     ability1 = Ability("Super Speed", 300)
     ability2 = Ability("Super Eyes", 130)
     ability3 = Ability("Wizard Wand", 80)
