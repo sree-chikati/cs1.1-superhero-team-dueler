@@ -44,7 +44,7 @@ class Hero:
          '''
          total_damage = 0
          for ability in self.abilities:
-             damage = ability.attack() #have to do this to save random values to a variable or else  will keep changing
+             damage = ability.attack()
              total_damage += damage
          return total_damage
 
@@ -59,7 +59,6 @@ class Hero:
      
      def take_damage(self, damage):
          '''Updates self.current_health to reflect the damage minus the defense.'''
-         # TODO: Create a method that updates self.current_health to the current minus the the amount returned from calling self.defend(damage).
          self.current_health -= damage + self.defend()
          if self.current_health < 0:
              self.current_health = 0
@@ -96,16 +95,8 @@ class Hero:
 
 
 if __name__ == "__main__":
-    # If you run this file from the terminal this block is executed.
     hero = Hero("Wonder Woman")
     weapon = Weapon("Lasso of Truth", 90)
     hero.add_weapon(weapon)
     print(hero.attack())
-
-
-   
-
-    #hero1 = Hero("Wonder Woman")
-    #hero2 = Hero("Dumbledore")
-    #hero1.fight(hero2)
    

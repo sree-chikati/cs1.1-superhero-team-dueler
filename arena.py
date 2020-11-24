@@ -89,6 +89,7 @@ class Arena:
         self.team_one.attack(self.team_two)
     
     def show_stats(self):
+        '''Shows the stats of both teams.'''
         print("\n")
         print(self.team_one.name + " statistics: ")
         self.team_one.stats()
@@ -106,7 +107,7 @@ class Arena:
             team_deaths = 1
         print(self.team_one.name + " average K/D was: " + str(team_kills/team_deaths))
 
-        # TODO: Now display the average K/D for Team Two
+        # Display the average K/D for Team Two
         team_kills2 = 0
         team_deaths2 = 0
         for hero in self.team_two.heroes:
@@ -117,12 +118,12 @@ class Arena:
         print(self.team_two.name + " average K/D was: " + str(team_kills2/team_deaths2))
 
 
-        # Here is a way to list the heroes from Team One that survived
+        # List the heroes from Team One that survived
         for hero in self.team_one.heroes:
             if hero.deaths == 0:
                 print("survived from " + self.team_one.name + ": " + hero.name)
 
-        #TODO: Now list the heroes from Team Two that survived
+        #List the heroes from Team Two that survived
         for hero in self.team_two.heroes:
             if hero.deaths == 0:
                 print("survived from " + self.team_two.name + ": " + hero.name)
