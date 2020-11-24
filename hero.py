@@ -20,6 +20,8 @@ class Hero:
          self.name = name
          self.starting_health = starting_health
          self.current_health = starting_health
+         self.deaths = 0
+         self.kills = 0
     
      def add_ability(self, ability):
         ''' Add ability to abilities list '''
@@ -31,6 +33,20 @@ class Hero:
         """
         self.abilities.append(weapon)
 
+     def add_armor(self, armor):
+         '''Add armor to self.armors
+            Armor: Armor Object
+         '''
+         self.armors.append(armor)
+    
+     def add_kill(self, num_kills=1):
+        """Update self.kills by num_kills amount"""
+        self.kills += num_kills
+    
+     def add_death(self, num_deaths=1):
+        """Update deaths with num_deaths"""
+        self.deaths += num_deaths
+
      def attack(self):
          '''Calculate the total damage from all ability attacks.
             return: total_damage:Int
@@ -40,12 +56,6 @@ class Hero:
              damage = ability.attack() #have to do this to save random values to a variable or else  will keep changing
              total_damage += damage
          return total_damage
-
-     def add_armor(self, armor):
-         '''Add armor to self.armors
-            Armor: Armor Object
-         '''
-         self.armors.append(armor)
 
      def defend(self):
          '''Calculate the total block amount from all armor blocks.
@@ -89,6 +99,16 @@ class Hero:
              elif opponent.is_alive():
                  self.take_damage(opponent.attack())
                  print(f'{opponent.name} won!')
+         
+         if not self.is_alive():
+             opponent.add_kill(1)
+             self.add_death(1)
+             return opponent.name
+
+         elif not opponent.is_alive():
+             self.add_kill(1)
+             opponent.add_death(1)
+             return self.name
 
 
 
