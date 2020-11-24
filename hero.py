@@ -4,22 +4,13 @@ from armor import Armor
 from weapon import Weapon
 
 class Hero: 
-    # We want our hero to have a default "starting_health",
      def __init__(self, name, starting_health=100):
-         ''' STEP 4: 
-          Instance properties:
-            abilities: List
-            armors: List
-            name: String
-            starting_health: Integer
-            current_health: Integer
-        '''
-        # abilities and armors don't have starting values, and are set to empty lists on initialization
          self.abilities = list()
          self.armors = list()
          self.name = name
          self.starting_health = starting_health
          self.current_health = starting_health
+         self.alive_status = True
          self.deaths = 0
          self.kills = 0
     
@@ -92,23 +83,15 @@ class Hero:
              self.take_damage(opponent.attack())
              opponent.take_damage(self.attack())
 
-             if self.is_alive():
-                 opponent.take_damage(self.attack())
-                 print(f'{self.name} won!')
+             if self.is_alive() == False:
+                 print(f"{opponent.name} wins!")
+                 self.add_death(1)
+                 opponent.add_kill(1)
 
-             elif opponent.is_alive():
-                 self.take_damage(opponent.attack())
-                 print(f'{opponent.name} won!')
-         
-         if not self.is_alive():
-             opponent.add_kill(1)
-             self.add_death(1)
-             return opponent.name
-
-         elif not opponent.is_alive():
-             self.add_kill(1)
-             opponent.add_death(1)
-             return self.name
+             elif opponent.is_alive() == False:
+                 self.add_kill(1)
+                 opponent.add_death(1)
+                 print(f"{self.name} wins!")
 
 
 

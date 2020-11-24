@@ -9,5 +9,5 @@ class Armor:
         self.max_block = max_block
 
     def block(self):
-        random_block_value = random.randint(0, self.max_block)
+        random_block_value = random.randint(0, int(self.max_block))
         return random_block_value

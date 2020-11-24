@@ -29,6 +29,8 @@ class Team:
     def stats(self):
         """Print team statistics."""
         for hero in self.heroes:
+            if hero.deaths == 0:
+                hero.deaths = 1
             kd = hero.kills / hero.deaths
             print(f"{hero.name} Kill/Deaths:{kd}")
     
@@ -50,12 +52,14 @@ class Team:
         for hero in other_team.heroes:
             living_opponents.append(hero)
 
-        while len(living_heroes) > 0 and len(living_opponents)> 0:
+        while len(living_heroes) > 0 and len(living_opponents) > 0:
             rand_hero = choice(living_heroes)
             rand_opponent = choice(living_opponents)
-            winner = rand_hero.fight(rand_opponent)
-
-            if winner == rand_hero.name:
+            rand_hero.fight(rand_opponent)
+            if rand_hero.is_alive() == True:
                 living_opponents.remove(rand_opponent)
-            elif winner == rand_opponent.name: 
+            elif rand_opponent.is_alive() == True:
+                living_heroes.remove(rand_hero)
+            else:
+                living_opponents.remove(rand_opponent)
                 living_heroes.remove(rand_hero)
