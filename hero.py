@@ -102,7 +102,7 @@ if __name__ == "__main__":
     hero1.fight(hero2)
 
 
-  
+   
 
     #hero1 = Hero("Wonder Woman")
     #hero2 = Hero("Dumbledore")
